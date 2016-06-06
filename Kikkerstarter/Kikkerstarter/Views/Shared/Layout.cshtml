@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Style.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+
+<body>
+    
+    <div class="menubar">
+        <div class="logo">
+            Kikkerstarter
+        </div>
+        <div class="menu">
+            @Html.ActionLink("Home", "Home", "Home", new { area = "" }, new { @class = "tab" })
+        </div>
+    </div>
+
+    <div class="wrapper">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Olaf van Dijk</p>
+        </footer>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
