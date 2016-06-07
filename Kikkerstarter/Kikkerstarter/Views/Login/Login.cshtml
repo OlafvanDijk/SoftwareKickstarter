@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (@Html.BeginForm())
+{
+    <div class="error">@ViewBag.loginfail<br></div>
+    <input type="text" name="Email" placeholder="Email"><br>
+    <input type="password" name="Wachtwoord" placeholder="Wachtwoord"><br>
+    <input type="submit" name="Login" value="Login" />
+    <input type="button" name="Register" value="Register" onclick="location.href='@Url.Action("Register", "Login")'" />
+}
