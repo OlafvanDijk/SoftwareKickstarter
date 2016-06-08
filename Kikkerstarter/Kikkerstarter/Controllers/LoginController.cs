@@ -11,16 +11,16 @@ namespace Kikkerstarter.Controllers
     {
         // GET: Login
         [HttpPost]
-        public ActionResult Login(string email, string wachtwoord)
+        public ActionResult Login(string Email, string Wachtwoord)
         {
             ViewBag.loginfail = "";
-
-            if (Database.Login(email, wachtwoord) == true)
+            Database.Login(Email, Wachtwoord);
+            if (Database.Login(Email, Wachtwoord) == true)
             {
                 ViewBag.user = Database.accountNaam;
                 return RedirectToAction("Home", "Home");
             }
-            else if (Database.Login(email, wachtwoord) == false)
+            else if (Database.Login(Email, Wachtwoord) == false)
             {
                 ViewBag.loginfail = "*Incorrect credentials*";
             }

@@ -10,7 +10,7 @@ namespace Kikkerstarter.Models
     {
         static OracleConnection m_conn;
         static OracleCommand m_command;
-        static string connectionString = "Data Source = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SID=xe)));User ID=system;PASSWORD=Beijing1;";
+        static string connectionString = "Data Source = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS=(PROTOCOL=TCP)(HOST=fhictora01.fhict.local)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=fhictora)));User ID=dbi336692;PASSWORD=Beijing1;";
 
 
         public static bool OpenConnection()
@@ -50,9 +50,9 @@ namespace Kikkerstarter.Models
                 OpenConnection();
                 m_command = new OracleCommand();
                 m_command.Connection = m_conn;
-                m_command.CommandText = "SELECT naam, email, wachtwoord FROM Account_Table WHERE wachtwoord = :wachtwoord AND email = :email";
-                m_command.Parameters.Add("wachtwoord", OracleDbType.Varchar2).Value = wachtwoord;
+                m_command.CommandText = "SELECT naam, email, wachtwoord FROM Account_Table WHERE email = :email AND wachtwoord = :wachtwoord";
                 m_command.Parameters.Add("email", OracleDbType.Varchar2).Value = emailacc;
+                m_command.Parameters.Add("wachtwoord", OracleDbType.Varchar2).Value = wachtwoord;
                 m_command.ExecuteNonQuery();
                 using (OracleDataReader _Reader = Command.ExecuteReader())
                 {
