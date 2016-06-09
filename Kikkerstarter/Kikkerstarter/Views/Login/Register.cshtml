@@ -3,15 +3,20 @@
     ViewBag.Title = "Register";
 }
 
+<h2>Registreren</h2>
+
 @using (@Html.BeginForm())
 {
     <div class="error">@ViewBag.loginfail<br></div>
-    <input type="text" name="Naam" placeholder="Naam" required ="required"><br>
-    <input type="password" name="Wachtwoord" placeholder="Wachtwoord" required ="required"><br>
-    <input type="text" name="Email" placeholder="Email" required ="required"><br>
-    <input type="text" name="Beschrijving" placeholder="Beschrijving"><br>
-    <input type="text" name="Websites" placeholder="Websites"><br>
-    <input type="text" name="Land" placeholder="Land" required ="required"><br>
-    <input type="text" name="Stad" placeholder="Stad" required ="required"><br>
-    <input type="submit" name="Register" value="Submit" onclick="location.href='@Url.Action("Home", "Login")'">
+    if (ViewBag.loggedin != "Y")
+    {
+        <input type="text" name="Naam" placeholder="Naam" required="required"><br>
+        <input type="password" name="Wachtwoord" placeholder="Wachtwoord" required="required"><br>
+        <input type="text" name="Email" placeholder="Email" required="required"><br>
+        <input type="text" name="Beschrijving" placeholder="Beschrijving"><br>
+        <input type="text" name="Websites" placeholder="Websites"><br>
+        <input type="text" name="Land" placeholder="Land" required="required"><br>
+        <input type="text" name="Stad" placeholder="Stad" required="required"><br>
+        <input type="submit" name="Register" value="Submit" onclick="location.href='@Url.Action("Home", "Login")'">
+    }
 }

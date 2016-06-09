@@ -9,20 +9,28 @@ namespace Kikkerstarter.Controllers
 {
     public class LoginController : Controller
     {
+        string user;
+        string loggedin;
+
         // GET: Login
         [HttpPost]
         public ActionResult Login(string Email, string Wachtwoord)
         {
             ViewBag.loginfail = "";
-            Database.Login(Email, Wachtwoord);
-            if (Database.Login(Email, Wachtwoord) == true)
+            ViewBag.loggedin = "";
+            if (Database.profiel == null)
             {
-                ViewBag.user = Database.accountNaam;
-                return RedirectToAction("Home", "Home");
-            }
-            else if (Database.Login(Email, Wachtwoord) == false)
-            {
-                ViewBag.loginfail = "*Incorrect credentials*";
+                if (Database.Login(Email, Wachtwoord) == true)
+                {
+                    User();
+                    ViewBag.loggedin = loggedin;
+                    ViewBag.user = user;
+                    return RedirectToAction("Home", "Home");
+                }
+                else if (Database.Login(Email, Wachtwoord) == false)
+                {
+                    ViewBag.loginfail = "*Foute inlog gegevens*";
+                }
             }
                 return View();
         }
@@ -30,6 +38,17 @@ namespace Kikkerstarter.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            User();
+            ViewBag.loggedin = loggedin;
+            ViewBag.user = user;
+            if (loggedin == "Y")
+            {
+                ViewBag.loginfail = "*Log eerst uit om in te kunnen loggen.*";
+            }
+            else
+            {
+                ViewBag.loginfail = "";
+            }
             return View();
         }
 
@@ -43,7 +62,39 @@ namespace Kikkerstarter.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+            User();
+            ViewBag.loggedin = loggedin;
+            ViewBag.user = user;
+            if (loggedin == "Y")
+            {
+                ViewBag.loginfail = "*Log eerst uit om u te registreren*";
+            }
+            else
+            {
+                ViewBag.loginfail = "";
+            }
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Uitloggen()
+        {
+            Database.profiel = null;
+            return View();
+        }
+
+        public void User()
+        {
+            if (Database.profiel != null)
+            {
+                user = Database.profiel.Naam;
+                loggedin = "Y";
+            }
+            else
+            {
+                user = "";
+                loggedin = "";
+            }
         }
     }
 }

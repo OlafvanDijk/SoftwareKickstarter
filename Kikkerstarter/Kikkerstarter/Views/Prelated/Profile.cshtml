@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Profiel";
+}
+
+<h2>Profiel</h2>
+
+@using (@Html.BeginForm())
+{
+    <div class="Profilediv1">
+        Naam: @ViewBag.user<br>
+        Email: @ViewBag.email<br>
+        Land: @ViewBag.land<br>
+        Stad: @ViewBag.stad<br>
+    </div>
+
+    <div class="Profilediv2">
+
+    </div>
+
+    <div class="Profilediv3">
+        Beschrijving:
+        <div class="Profilediv4">
+            @ViewBag.beschrijving
+        </div>
+    </div>
+
+    
+}

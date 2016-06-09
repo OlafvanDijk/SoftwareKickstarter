@@ -10,6 +10,7 @@ namespace Kikkerstarter.Models
     {
         static OracleConnection m_conn;
         static OracleCommand m_command;
+        public static Profiel profiel;
         static string connectionString = "Data Source = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS=(PROTOCOL=TCP)(HOST=fhictora01.fhict.local)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=fhictora)));User ID=dbi336692;PASSWORD=Beijing1;";
 
 
@@ -39,18 +40,15 @@ namespace Kikkerstarter.Models
 
         public static OracleCommand Command { get { return m_command; } }
 
-        public static string email = "";
-        public static string accountNaam = "";
         public static bool Login(string emailacc, string wachtwoord)
         {
-            string emaild = "";
             bool ok = false;
             try
             {
                 OpenConnection();
                 m_command = new OracleCommand();
                 m_command.Connection = m_conn;
-                m_command.CommandText = "SELECT naam, email, wachtwoord FROM Account_Table WHERE email = :email AND wachtwoord = :wachtwoord";
+                m_command.CommandText = "SELECT naam, email, beschrijving, websites, land, stad FROM Account_Table WHERE email = :email AND wachtwoord = :wachtwoord";
                 m_command.Parameters.Add("email", OracleDbType.Varchar2).Value = emailacc;
                 m_command.Parameters.Add("wachtwoord", OracleDbType.Varchar2).Value = wachtwoord;
                 m_command.ExecuteNonQuery();
@@ -60,11 +58,8 @@ namespace Kikkerstarter.Models
                     {
                         while (_Reader.Read())
                         {
-                            string account = Convert.ToString(_Reader["naam"]);
-                            accountNaam = account;
-                            emaild = Convert.ToString(_Reader["email"]);
-                            email = emaild;
-                            if (emaild == emailacc) { ok = true; }
+                            profiel = new Profiel(Convert.ToString(_Reader["naam"]), Convert.ToString(_Reader["email"]), Convert.ToString(_Reader["beschrijving"]), Convert.ToString(_Reader["websites"]), Convert.ToString(_Reader["land"]), Convert.ToString(_Reader["stad"]));
+                            if (profiel.Email == emailacc) { ok = true; }
                         }
                     }
                     catch (OracleException ex)
@@ -105,5 +100,6 @@ namespace Kikkerstarter.Models
                 Console.WriteLine(ex.Message);
             }
         }
+
     }
 }

@@ -11,16 +11,30 @@
 </head>
 
 <body>
-    
+
     <div class="menubar">
         <div class="logo">
             Kikkerstarter
         </div>
         <div class="menu">
             @Html.ActionLink("Home", "Home", "Home", new { area = "" }, new { @class = "tab" })
-            @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "tab" })
-            @Html.ActionLink("Register", "Register", "Login", new { area = "" }, new { @class = "tab" })
+
+            @if (ViewBag.loggedin == "Y")
+            {
+                @Html.ActionLink("Uitloggen", "Uitloggen", "Login", new { id = "" }, new { @class = "tab" })
+            }
+            else
+            {
+                @Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "tab" })
+            }
+
+            @Html.ActionLink("Registreren", "Register", "Login", new { area = "" }, new { @class = "tab" })
+
         </div>
+        @if (ViewBag.loggedin == "Y")
+        {
+            @Html.ActionLink("Welkom " + (string)ViewBag.user, "Profile", "PRelated", new { area = "" }, new { @class = "naam"})
+        }
     </div>
 
     <div class="wrapper">

@@ -2,7 +2,7 @@
     font-family: 'open sans', sans-serif;
     overflow: scroll;
     overflow-x: hidden;
-    background-color: white;
+    background-color: bisque;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -27,20 +27,54 @@
     color: red;
 }
 
+.Profilediv1 {
+    float: left;
+    width: 40vw;
+    height: 30vh;
+}
+
+.Profilediv2 {
+    float: right;
+    width: 60vw;
+    height: 30vh;
+}
+
+.Profilediv3 {
+    clear: both;
+    height: 37vh;
+}
+
+.Profilediv4 {
+    border: 1px solid black;
+    width: 60vw;
+    height: 30vh;
+}
+
 .menubar {
     width: 100vw;
     margin-top: -8px;
     margin-left: -8px;
     height: 50px;
-    background-color: ghostwhite;
+    background-color: limegreen;
 }
 
 .error {
-    width: 0px; /* remove scrollbar space */
-    background: transparent; /* make scrollbar invisible */
+    width: auto;
+    background: transparent;
+}
+
+.naam{
+    font-weight: bolder;
+    width: 15vw;
+    margin-right: 5vw;
+    padding-top: 15px;
+    color: dimgray;
+    text-decoration: none;
+    float: right;
 }
 
 .logo{
+    font-weight: bold;
     width: 15vw;
     margin-left: 5vw;
     padding-top: 15px;
@@ -48,10 +82,10 @@
 }
 
 .menu {
-    width: 80vw;
+    width: 60vw;
     margin: auto;
     padding-top: 15px;
-    float: right;
+    float: left;
 }
 
 .wrapper {
@@ -62,8 +96,9 @@
 }
 
 .tab {
+    font-weight: bolder;
     margin-left: +5px;
-    color: gray;
+    color: dimgrey;
     text-decoration: none;
 }
 
