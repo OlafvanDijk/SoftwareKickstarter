@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Kikkerstarter.Models.Project>
 @{
     ViewBag.Title = "Home";
 }
@@ -8,6 +8,15 @@
 @using (@Html.BeginForm())
 {
     <div>
-    hallo
+        hallo
     </div>
+        foreach (var project in Model)
+        {
+            <div class="project1">
+                @project.NaamProject gemaakt door @project.Accountnaam
+                <div class="project2">
+                    @project.Beschrijving
+                </div>
+            </div>
+        }
 }

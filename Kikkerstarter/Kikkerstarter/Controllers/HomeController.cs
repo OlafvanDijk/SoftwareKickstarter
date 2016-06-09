@@ -24,6 +24,13 @@ namespace Kikkerstarter.Controllers
                 ViewBag.user = "";
                 ViewBag.loggedin = "";
             }
+
+            Database.ProjectenHome();
+            if (Database.projectenhome.Count != 0)
+            {
+                var projecten = Database.projectenhome;
+                return View(projecten);
+            }
             return View();
         }
     }

@@ -50,6 +50,19 @@
     height: 30vh;
 }
 
+.project1 {
+    border: 1px solid black;
+    width: 15vw;
+    margin-left: 1.5px;
+    margin-right: 1.5px;
+    height: 50vh;
+}
+
+.project2 {
+    width: 14vw;
+    height: 48vh;
+}
+
 .menubar {
     width: 100vw;
     margin-top: -8px;
