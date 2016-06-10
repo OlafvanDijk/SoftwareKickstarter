@@ -8,15 +8,15 @@
 @using (@Html.BeginForm())
 {
     <div class="error">@ViewBag.loginfail<br></div>
-    if (ViewBag.loggedin != "Y")
+    if (@ViewBag.loggedin != "Y")
     {
         <input type="text" name="Naam" placeholder="Naam" required="required"><br>
         <input type="password" name="Wachtwoord" placeholder="Wachtwoord" required="required"><br>
         <input type="text" name="Email" placeholder="Email" required="required"><br>
-        <input type="text" name="Beschrijving" placeholder="Beschrijving"><br>
-        <input type="text" name="Websites" placeholder="Websites"><br>
+        <textarea name="Beschrijving" placeholder="Beschrijving" class="beschrijving"></textarea> <br>
+        <textarea type="text" name="Websites" placeholder="Websites" class="website"></textarea><br>
         <input type="text" name="Land" placeholder="Land" required="required"><br>
         <input type="text" name="Stad" placeholder="Stad" required="required"><br>
-        <input type="submit" name="Register" value="Submit" onclick="location.href='@Url.Action("Home", "Login")'">
+        <input type="submit" name="Register" value="Submit">
     }
 }

@@ -130,7 +130,8 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 500px;
+    max-height: 500px;
 }
 
 .footer {
@@ -141,4 +142,14 @@ textarea {
     font-size: large;
     color: black;
     font-weight: 700;
+}
+
+.beschrijving{
+    width: 500px; 
+    height: 250px;
+}
+
+.website {
+    width: 500px; 
+    height: 100px;
 }

@@ -56,7 +56,7 @@ namespace Kikkerstarter.Controllers
         public ActionResult Register(string naam, string wachtwoord, string email, string beschrijving, string websites, string land, string stad)
         {
             Database.RegisterUser(naam, wachtwoord, email, beschrijving, websites, land, stad);
-            return View();
+            return RedirectToAction("Login", "Login");
         }
 
         [HttpGet]

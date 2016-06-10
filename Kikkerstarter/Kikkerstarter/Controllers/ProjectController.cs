@@ -10,6 +10,8 @@ namespace Kikkerstarter.Controllers
     public class ProjectController : Controller
     {
         Project projectD;
+        string begindat;
+        string einddat;
 
         // GET: Project
         [HttpGet]
@@ -34,12 +36,14 @@ namespace Kikkerstarter.Controllers
             );
             if (projectD != null)
             {
+                begindat = projectD.StartDate.ToString("dd/MM/yyyy");
+                einddat = projectD.EindDate.ToString("dd/MM/yyyy");
                 ViewBag.projectnaam = projectD.NaamProject;
                 ViewBag.accountnaam = projectD.Accountnaam;
                 ViewBag.genre = projectD.Genre;
                 ViewBag.beschrijving = projectD.Beschrijving;
-                ViewBag.start = projectD.StartDate;
-                ViewBag.eind = projectD.EindDate;
+                ViewBag.start = begindat;
+                ViewBag.eind = einddat;
                 ViewBag.goal = projectD.Goal;
             }
             else
@@ -51,6 +55,8 @@ namespace Kikkerstarter.Controllers
                 ViewBag.start = "";
                 ViewBag.eind = "";
                 ViewBag.goal = "";
+                einddat = "";
+                begindat = "";
             }
             return View();
         }

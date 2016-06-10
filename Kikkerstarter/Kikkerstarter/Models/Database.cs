@@ -50,7 +50,7 @@ namespace Kikkerstarter.Models
                 OpenConnection();
                 m_command = new OracleCommand();
                 m_command.Connection = m_conn;
-                m_command.CommandText = "SELECT naam, email, beschrijving, websites, land, stad FROM Account_Table WHERE email = :email AND wachtwoord = :wachtwoord";
+                m_command.CommandText = "SELECT naamAccount, email, beschrijving, websites, land, stad FROM Account_Table WHERE email = :email AND wachtwoord = :wachtwoord";
                 m_command.Parameters.Add("email", OracleDbType.Varchar2).Value = emailacc;
                 m_command.Parameters.Add("wachtwoord", OracleDbType.Varchar2).Value = wachtwoord;
                 m_command.ExecuteNonQuery();
@@ -60,7 +60,7 @@ namespace Kikkerstarter.Models
                     {
                         while (_Reader.Read())
                         {
-                            profiel = new Profiel(Convert.ToString(_Reader["naam"]), Convert.ToString(_Reader["email"]), Convert.ToString(_Reader["beschrijving"]), Convert.ToString(_Reader["websites"]), Convert.ToString(_Reader["land"]), Convert.ToString(_Reader["stad"]));
+                            profiel = new Profiel(Convert.ToString(_Reader["naamAccount"]), Convert.ToString(_Reader["email"]), Convert.ToString(_Reader["beschrijving"]), Convert.ToString(_Reader["websites"]), Convert.ToString(_Reader["land"]), Convert.ToString(_Reader["stad"]));
                             if (profiel.Email == emailacc) { ok = true; }
                         }
                     }
@@ -87,7 +87,7 @@ namespace Kikkerstarter.Models
                 OpenConnection();
                 m_command = new OracleCommand();
                 m_command.Connection = m_conn;
-                m_command.CommandText = "INSERT INTO Account_Table (naam, email, wachtwoord, beschrijving, websites, land, stad) VALUES (:naam, :email, :wachtwoord, :beschrijving, :websites, :land, :stad)";
+                m_command.CommandText = "INSERT INTO Account_Table (naamAccount, email, wachtwoord, beschrijving, websites, land, stad) VALUES (:naam, :email, :wachtwoord, :beschrijving, :websites, :land, :stad)";
                 m_command.Parameters.Add("naam", OracleDbType.Varchar2).Value = naam;
                 m_command.Parameters.Add("email", OracleDbType.Varchar2).Value = email;
                 m_command.Parameters.Add("wachtwoord", OracleDbType.Varchar2).Value = wachtwoord;
@@ -111,13 +111,17 @@ namespace Kikkerstarter.Models
             try
             {
                 projectenhome.Clear();
+                DateTime a = DateTime.Today;
+                DateTime date = a.Date;
+                a = Convert.ToDateTime(a.ToString("dd/MM/yyyy"));
+
                 OpenConnection();
                 m_command = new OracleCommand();
                 m_command.Connection = m_conn;
-                m_command.CommandText = "SELECT p.projectID, a.naamAccount, p.naamProject, p.startDate, p.eindDate, p.genre, p.beschrijving, p.goal FROM Project_Table p, Account_Table a WHERE p.accountID = a.accountID";
+                m_command.CommandText = "SELECT p.projectID, a.naamAccount, p.naamProject, p.startDate, p.eindDate, p.genre, p.beschrijving, p.goal FROM Project_Table p, Account_Table a WHERE p.accountID = a.accountID AND :dat >= p.startDate AND :dat <= p.eindDate";
                 //Project_Table p LEFT JOIN Account_Table a ON
                 //WHERE: date >= p.startDate AND: date <= p.eindDate
-                //m_command.Parameters.Add("date", OracleDbType.Varchar2).Value = DateTime.Today.ToString("dd/MM/yyyy");
+                m_command.Parameters.Add("dat", OracleDbType.Date).Value = a;
                 m_command.ExecuteNonQuery();
                 using (OracleDataReader _Reader = Command.ExecuteReader())
                 {
@@ -125,12 +129,9 @@ namespace Kikkerstarter.Models
                     {
                         while (_Reader.Read())
                         {
-                            CultureInfo provider = CultureInfo.InvariantCulture;
-                            string start = Convert.ToString(_Reader["startDate"]);
-                            string end = Convert.ToString(_Reader["eindDate"]);
-                            DateTime startdate = DateTime.ParseExact(start, "dd/MM/yyyy", provider);
-                            DateTime enddate = DateTime.ParseExact(end, "dd/MM/yyyy", provider);
-                            Project project = new Project(Convert.ToInt32(_Reader["projectID"]), Convert.ToString(_Reader["naamAccount"]), Convert.ToString(_Reader["naamProject"]), startdate, enddate, Convert.ToString(_Reader["genre"]), Convert.ToString(_Reader["beschrijving"]), Convert.ToString(_Reader["goal"]));
+                            DateTime start = Convert.ToDateTime(_Reader["startDate"]);
+                            DateTime eind = Convert.ToDateTime(_Reader["eindDate"]);
+                            Project project = new Project(Convert.ToInt32(_Reader["projectID"]), Convert.ToString(_Reader["naamAccount"]), Convert.ToString(_Reader["naamProject"]), start, eind, Convert.ToString(_Reader["genre"]), Convert.ToString(_Reader["beschrijving"]), Convert.ToString(_Reader["goal"]));
                             projectenhome.Add(project);
                         }
                     }
