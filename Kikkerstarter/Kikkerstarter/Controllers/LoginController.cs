@@ -16,8 +16,8 @@ namespace Kikkerstarter.Controllers
         [HttpPost]
         public ActionResult Login(string Email, string Wachtwoord)
         {
-            ViewBag.loginfail = "";
-            ViewBag.loggedin = "";
+            ViewBag.loginfail = string.Empty;
+            ViewBag.loggedin = string.Empty;
             if (Database.profiel == null)
             {
                 if (Database.Login(Email, Wachtwoord) == true)
@@ -47,7 +47,7 @@ namespace Kikkerstarter.Controllers
             }
             else
             {
-                ViewBag.loginfail = "";
+                ViewBag.loginfail = string.Empty;
             }
             return View();
         }
@@ -71,7 +71,7 @@ namespace Kikkerstarter.Controllers
             }
             else
             {
-                ViewBag.loginfail = "";
+                ViewBag.loginfail = string.Empty;
             }
             return View();
         }
@@ -92,8 +92,8 @@ namespace Kikkerstarter.Controllers
             }
             else
             {
-                user = "";
-                loggedin = "";
+                user = string.Empty;
+                loggedin = string.Empty;
             }
         }
     }

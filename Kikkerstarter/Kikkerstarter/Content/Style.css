@@ -61,14 +61,15 @@
 }
 
 .project2 {
-    width: 14vw;
+    width: 15vw;
     height: 48vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
 }
 
 .menubar {
     width: 100vw;
     margin-top: -8px;
-    margin-left: -8px;
     height: 50px;
     background-color: limegreen;
 }
@@ -80,8 +81,7 @@
 
 .naam {
     font-weight: bolder;
-    width: 15vw;
-    margin-right: 5vw;
+    width: 20vw;
     padding-top: 15px;
     color: dimgray;
     text-decoration: none;

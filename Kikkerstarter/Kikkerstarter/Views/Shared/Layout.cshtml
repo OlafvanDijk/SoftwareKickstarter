@@ -19,7 +19,7 @@
         </div>
         <div class="menu">
             @Html.ActionLink("Home", "Home", "Home", new { area = "" }, new { @class = "tab" })
-
+            @Html.ActionLink("Maak een Project", "CProject", "Project", new { id = "" }, new { @class = "tab"})
             @if (ViewBag.loggedin == "Y")
             {
                 @Html.ActionLink("Uitloggen", "Uitloggen", "Login", new { id = "" }, new { @class = "tab" })

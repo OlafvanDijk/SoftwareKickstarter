@@ -47,13 +47,13 @@ namespace Kikkerstarter.Controllers
             }
             else
             {
-                user = "";
-                email = "";
-                beschrijving = "";
-                websites = "";
-                land = "";
-                stad = "";
-                loggedin = "";
+                user = string.Empty;
+                email = string.Empty;
+                beschrijving = string.Empty;
+                websites = string.Empty;
+                land = string.Empty;
+                stad = string.Empty;
+                loggedin = string.Empty;
             }
         }
     }

@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Maak een project";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (@Html.BeginForm())
+{
+    <div class="error">@ViewBag.fail<br></div>
+
+    if (ViewBag.loggedin == "Y")
+    {
+        <label>Naam Project: </label>
+        <input type="text" name="naamProject" placeholder="Project naam"><br>
+        <label>Eind datum: </label>
+        <input type="date" name="eindDatum" placeholder="dd/MM/yyyy"><br>
+        <label>Genre: </label>
+        <input type="text" name="genre" placeholder="Genre"><br>
+        <label>Beschrijving:</label><br>
+        <textarea name="beschrijving" placeholder="Beschrijving" class="beschrijving"></textarea> <br>
+        <label>Goal: </label>
+        <input type="text" name="goal" placeholder="Voorbeeld: 1000"><br>
+        <input type="submit" name="Cproject" value="Maak project" />
+    }
+}

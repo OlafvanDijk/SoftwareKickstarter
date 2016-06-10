@@ -21,15 +21,15 @@ namespace Kikkerstarter.Controllers
             }
             else
             {
-                ViewBag.user = "";
-                ViewBag.loggedin = "";
+                ViewBag.user = string.Empty;
+                ViewBag.loggedin = string.Empty;
             }
 
             Database.ProjectenHome();
             if (Database.projectenhome.Count != 0)
             {
-                ViewBag.projecten = "";
-                var projecten = Database.projectenhome;
+                ViewBag.projecten = string.Empty;
+                var projecten = Database.projectenhome.OrderBy(x => x.ProjectID);
                 return View(projecten);
             }
             else

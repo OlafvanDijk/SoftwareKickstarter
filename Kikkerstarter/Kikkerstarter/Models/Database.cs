@@ -23,7 +23,7 @@ namespace Kikkerstarter.Models
             {
                 m_conn.ConnectionString = connectionString;
                 m_conn.Open();
-                // Controleer of de verbinding open is
+                //// Controleer of de verbinding open is
                 if (m_conn.State != System.Data.ConnectionState.Open)
                 { return true; }
             }
@@ -41,7 +41,7 @@ namespace Kikkerstarter.Models
 
         public static OracleCommand Command { get { return m_command; } }
 
-        // Login
+        //// Login
         public static bool Login(string emailacc, string wachtwoord)
         {
             bool ok = false;
@@ -50,7 +50,7 @@ namespace Kikkerstarter.Models
                 OpenConnection();
                 m_command = new OracleCommand();
                 m_command.Connection = m_conn;
-                m_command.CommandText = "SELECT naamAccount, email, beschrijving, websites, land, stad FROM Account_Table WHERE email = :email AND wachtwoord = :wachtwoord";
+                m_command.CommandText = "SELECT accountID, naamAccount, email, beschrijving, websites, land, stad FROM Account_Table WHERE email = :email AND wachtwoord = :wachtwoord";
                 m_command.Parameters.Add("email", OracleDbType.Varchar2).Value = emailacc;
                 m_command.Parameters.Add("wachtwoord", OracleDbType.Varchar2).Value = wachtwoord;
                 m_command.ExecuteNonQuery();
@@ -60,7 +60,7 @@ namespace Kikkerstarter.Models
                     {
                         while (_Reader.Read())
                         {
-                            profiel = new Profiel(Convert.ToString(_Reader["naamAccount"]), Convert.ToString(_Reader["email"]), Convert.ToString(_Reader["beschrijving"]), Convert.ToString(_Reader["websites"]), Convert.ToString(_Reader["land"]), Convert.ToString(_Reader["stad"]));
+                            profiel = new Profiel(Convert.ToInt32(_Reader["accountID"]), Convert.ToString(_Reader["naamAccount"]), Convert.ToString(_Reader["email"]), Convert.ToString(_Reader["beschrijving"]), Convert.ToString(_Reader["websites"]), Convert.ToString(_Reader["land"]), Convert.ToString(_Reader["stad"]));
                             if (profiel.Email == emailacc) { ok = true; }
                         }
                     }
@@ -79,7 +79,7 @@ namespace Kikkerstarter.Models
             return ok;
         }
 
-        // Registreren
+        //// Registreren
         public static void RegisterUser(string naam, string wachtwoord, string email, string beschrijving, string websites, string land, string stad)
         {
             try
@@ -105,7 +105,7 @@ namespace Kikkerstarter.Models
         }
 
         public static List<Project> projectenhome = new List<Project>();
-        // Projecten homepage laden
+        //// Projecten homepage laden
         public static void ProjectenHome()
         {
             try
@@ -148,6 +148,34 @@ namespace Kikkerstarter.Models
                 Console.WriteLine(ex.Message);
             }
 
+        }
+
+        public static void Cproject(string projectNaam, DateTime eindDatum, string genre, string beschrijving, string goal)
+        {
+            try
+            {
+                DateTime a = DateTime.Today;
+                DateTime date = a.Date;
+                a = Convert.ToDateTime(a.ToString("dd/MM/yyyy"));
+
+                OpenConnection();
+                m_command = new OracleCommand();
+                m_command.Connection = m_conn;
+                m_command.CommandText = "INSERT INTO Project_Table (accountID, naamProject, startDate, eindDate, genre, beschrijving, goal) VALUES (:id, :naam, :star, :eind, :genre, :beschrijving, :goal)";
+                m_command.Parameters.Add("id", OracleDbType.Varchar2).Value = profiel.accountID;
+                m_command.Parameters.Add("naam", OracleDbType.Varchar2).Value = projectNaam;
+                m_command.Parameters.Add("start", OracleDbType.Date).Value = a;
+                m_command.Parameters.Add("eind", OracleDbType.Date).Value = eindDatum;
+                m_command.Parameters.Add("genre", OracleDbType.Varchar2).Value = genre;
+                m_command.Parameters.Add("beschrijving", OracleDbType.Varchar2).Value = beschrijving;
+                m_command.Parameters.Add("goal", OracleDbType.Varchar2).Value = goal;
+                Command.ExecuteNonQuery();
+            }
+            catch (OracleException ex)
+            {
+                CloseConnection();
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

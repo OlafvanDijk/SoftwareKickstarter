@@ -7,6 +7,8 @@ namespace Kikkerstarter.Models
 {
     public class Profiel
     {
+        public int accountID { get; set; }
+
         public string Naam { get; set; }
 
         public string Email { get; set; }
@@ -24,8 +26,9 @@ namespace Kikkerstarter.Models
 
         }
 
-        public Profiel(string Naam, string Email, string Beschrijving, string Websites, string Land, string Stad)
+        public Profiel(int accountID,string Naam, string Email, string Beschrijving, string Websites, string Land, string Stad)
         {
+            this.accountID = accountID;
             this.Naam = Naam;
             this.Email = Email;
             this.Beschrijving = Beschrijving;

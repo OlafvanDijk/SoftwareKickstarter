@@ -171,6 +171,7 @@
     <Content Include="Views\Login\Uitloggen.cshtml" />
     <Content Include="Views\Prelated\Profile.cshtml" />
     <Content Include="Views\Project\Project.cshtml" />
+    <Content Include="Views\Project\CProject.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
