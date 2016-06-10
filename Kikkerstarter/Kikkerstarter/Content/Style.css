@@ -8,6 +8,7 @@
     background-size: cover;
 }
 
+
 ::-webkit-scrollbar {
     width: 0px; /* remove scrollbar space */
     background: transparent; /* make scrollbar invisible */
@@ -29,22 +30,17 @@
 
 .Profilediv1 {
     float: left;
-    width: 40vw;
+    width: 20vw;
     height: 30vh;
 }
+
 
 .Profilediv2 {
-    float: right;
-    width: 60vw;
-    height: 30vh;
-}
-
-.Profilediv3 {
     clear: both;
     height: 37vh;
 }
 
-.Profilediv4 {
+.Profilediv3 {
     border: 1px solid black;
     width: 60vw;
     height: 30vh;
@@ -90,9 +86,10 @@
 
 .logo {
     font-weight: bold;
-    width: 15vw;
+    width: 10vw;
     margin-left: 5vw;
     padding-top: 15px;
+    margin-right: 2vw;
     float: left;
 }
 
@@ -106,7 +103,6 @@
 .wrapper {
     width: 60%;
     margin: 10px auto;
-    background-color: transparent;
     padding: 0px;
 }
 
@@ -144,12 +140,18 @@ textarea {
     font-weight: 700;
 }
 
-.beschrijving{
-    width: 500px; 
+.beschrijving {
+    width: 500px;
     height: 250px;
 }
 
 .website {
-    width: 500px; 
+    width: 500px;
     height: 100px;
+}
+
+.special {
+    width: 40vw;
+    height: 60vh;
+    float: left;
 }

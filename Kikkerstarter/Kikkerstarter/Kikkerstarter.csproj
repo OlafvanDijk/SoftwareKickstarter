@@ -124,6 +124,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Style.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\avatar_2cd47bc1ad07_128.png" />
+    <Content Include="Images\Pikachu.png" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
