@@ -10,13 +10,22 @@
     <div>
         hallo
     </div>
+    if (ViewBag.projecten != "0")
+    {
         foreach (var project in Model)
         {
-            <div class="project1">
-                @project.NaamProject gemaakt door @project.Accountnaam
-                <div class="project2">
+            <div class="project1"  style="text-align:center;">
+                @Html.ActionLink(project.NaamProject, "Project", "Project", new { projectID = project.ProjectID }, new { @class = "projectlink" })<br>
+                gemaakt door @project.Accountnaam
+                <div class="project2" style="text-align:left;">
+                    <br>
                     @project.Beschrijving
                 </div>
             </div>
         }
+    }
+    else
+    {
+        <h2>Er zijn geen projecten gevonden.</h2>
+    }
 }

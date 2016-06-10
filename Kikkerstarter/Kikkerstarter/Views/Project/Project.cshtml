@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = ViewBag.projectnaam;
+}
+
+<h2>@ViewBag.projectnaam</h2>
+
+@using (@Html.BeginForm())
+{
+    <div>
+        Project: @ViewBag.projectnaam<br>
+        Gemaakt door: @ViewBag.accountnaam<br>
+        Genre: @ViewBag.genre<br>
+        <br>
+        Beschrijving:<br>
+        @ViewBag.beschrijving<br>
+        <br>
+        Begin datum: @ViewBag.start<br>
+        Eind datun: @ViewBag.eind<br>
+        Fund goal: @ViewBag.goal<br>
+    </div>
+}

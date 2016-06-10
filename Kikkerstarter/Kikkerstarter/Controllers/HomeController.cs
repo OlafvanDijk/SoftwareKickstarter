@@ -28,8 +28,13 @@ namespace Kikkerstarter.Controllers
             Database.ProjectenHome();
             if (Database.projectenhome.Count != 0)
             {
+                ViewBag.projecten = "";
                 var projecten = Database.projectenhome;
                 return View(projecten);
+            }
+            else
+            {
+                ViewBag.projecten = "0";
             }
             return View();
         }
