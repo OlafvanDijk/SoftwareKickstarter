@@ -3,6 +3,8 @@
     ViewBag.Title = "Home";
 }
 
+<!--De model wordt gebruikt voor de lijst met projecten.-->
+
 <h2>Home</h2>
 
 @using (@Html.BeginForm())
@@ -10,6 +12,10 @@
     <div>
         Projecten:
     </div>
+    <!--Als de ViewBag != "0" dan moet hij voor elk project in de model een paar divs aanmaken met een
+        actionlink.
+        Deze if staat hier zodat hij alleen naar de code kijkt als de Model niet leeg is.
+        Anders ontstaan er errors.-->
     if (ViewBag.projecten != "0")
     {
         foreach (var project in Model)

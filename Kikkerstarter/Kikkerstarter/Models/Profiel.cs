@@ -5,6 +5,10 @@ using System.Web;
 
 namespace Kikkerstarter.Models
 {
+    /// <summary>
+    /// De klasse Profiel wordt gebruikt voor het opslaan van de gegevens van iemand die is ingelogd.
+    /// De klasse kan leeg worden aangemaakt dit is voor makkelijk gebruik.
+    /// </summary>
     public class Profiel
     {
         public int accountID { get; set; }

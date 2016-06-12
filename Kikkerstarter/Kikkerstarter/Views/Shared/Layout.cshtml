@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--De css komt van de Style.css en bootstrap af.-->
     <link href="~/Content/Style.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
@@ -12,15 +13,18 @@
 </head>
 
 <body>
-
+    <!--Een div menubar waarin alle tabs staan.-->
     <div class="menubar">
+        <!--Een div met het logo.-->
         <div class="logo">
             <img src="~/Images/avatar_2cd47bc1ad07_128.png" width="32" height="32"/>
             Kikkerstarter
         </div>
+        <!--De menu div. Hierin staan actionlinks.-->
         <div class="menu">
             @Html.ActionLink("Home", "Home", "Home", new { area = "" }, new { @class = "tab" })
             @Html.ActionLink("Maak een Project", "CProject", "Project", new { id = "" }, new { @class = "tab"})
+            <!--Als ViewBag.loggedin == "Y" dan staat er een actionlink van uitloggen anders staat er Login.-->
             @if (ViewBag.loggedin == "Y")
             {
                 @Html.ActionLink("Uitloggen", "Uitloggen", "Login", new { id = "" }, new { @class = "tab" })
@@ -33,6 +37,7 @@
             @Html.ActionLink("Registreren", "Register", "Login", new { area = "" }, new { @class = "tab" })
 
         </div>
+        <!--Als Viewbag.loggedin == "Y" dan is er een extra actionlink die naar de Profile view verwijst.-->
         @if (ViewBag.loggedin == "Y")
         {
             @Html.ActionLink("Welkom " + (string)ViewBag.user, "Profile", "PRelated", new { area = "" }, new { @class = "naam"})

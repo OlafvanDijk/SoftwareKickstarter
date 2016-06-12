@@ -7,7 +7,7 @@
 
 @using (@Html.BeginForm())
 {
-        
+        //// Een div met gegevens.
         <div class="Profilediv1">
             Naam: @ViewBag.user<br>
             Email: @ViewBag.email<br>
@@ -15,8 +15,10 @@
             Stad: @ViewBag.stad<br>
         </div>
 
+        //// Een leuk zelf gemaakt plaatje.
             <img src="~/Images/Pikachu.png" class="special"/>
-
+            
+            //// Een div in een div voor de beschrijving.
         <div class="Profilediv2">
             Beschrijving:
             <div class="Profilediv3">

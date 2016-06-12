@@ -8,6 +8,7 @@
 @using (@Html.BeginForm())
 {
     <div class="error">@ViewBag.loginfail<br></div>
+    ////Als de ViewBag.loggedin != "Y" dan worden de input velden weergeven.
     if (@ViewBag.loggedin != "Y")
     {
         <input type="text" name="Naam" placeholder="Naam" required="required"><br>

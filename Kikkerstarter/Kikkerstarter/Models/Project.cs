@@ -5,6 +5,9 @@ using System.Web;
 
 namespace Kikkerstarter.Models
 {
+    /// <summary>
+    /// De klasse Project wordt gebruikt om projecten in op te slaan.
+    /// </summary>
     public class Project
     {
         public int ProjectID { get; set; }

@@ -9,50 +9,43 @@ namespace Kikkerstarter.Controllers
 {
     public class PrelatedController : Controller
     {
-        string user;
-        string email;
-        string beschrijving;
-        string websites;
-        string land;
-        string stad;
+        /// <summary>
+        /// Ik maak een leeg profiel aan en een lege loggedin string zodat ik hier in de hele
+        /// controller bij kan.
+        /// </summary>
+        Profiel p;
         string loggedin;
 
         // GET: Prelated
         [HttpGet]
         public ActionResult Profile()
         {
-            Laadprofiel();
-            ViewBag.user = user;
-            ViewBag.email = email;
+            ////Ik roep LaadProfiel() aan. Deze methode bepaald of Profiel p leeg moet zijn of gevuld moet zijn
+            ////Als p leeg is dan zijn alle ViewBags ook leeg
+            LaadProfiel();
+            ViewBag.user = p.Naam;
+            ViewBag.email = p.Email;
+            ViewBag.beschrijving = p.Beschrijving;
+            ViewBag.websites = p.Websites;
+            ViewBag.land = p.Land;
+            ViewBag.stad = p.Stad;
             ViewBag.loggedin = loggedin;
-            ViewBag.beschrijving = beschrijving;
-            ViewBag.websites = websites;
-            ViewBag.land = land;
-            ViewBag.stad = stad;
-
             return View();
         }
 
-        public void Laadprofiel()
+        public void LaadProfiel()
         {
+            ////Als database.profiel != null is dan is er iemand ingelogd. Het database profiel wordt dan in p
+            ////gezet en loggedin bepaald of er dingen worden weggelaten of juist niet.
+            ////Als niemand is ingelogd is p gelijk aan null.
             if (Database.profiel != null)
             {
-                user = Database.profiel.Naam;
-                email = Database.profiel.Email;
-                beschrijving = Database.profiel.Beschrijving;
-                websites = Database.profiel.Beschrijving;
-                land = Database.profiel.Land;
-                stad = Database.profiel.Stad;
+                p = Database.profiel;
                 loggedin = "Y";
             }
             else
             {
-                user = string.Empty;
-                email = string.Empty;
-                beschrijving = string.Empty;
-                websites = string.Empty;
-                land = string.Empty;
-                stad = string.Empty;
+                p = null;
                 loggedin = string.Empty;
             }
         }
